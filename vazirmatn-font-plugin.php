@@ -3,7 +3,7 @@
  * Plugin Name: Vazirmatn Font Plugin
  * Plugin URI: https://example.com/
  * Description: افزونه فونت Vazirmatn برای وردپرس | طراحی شده توسط صابر راستی کردار
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: Rick Sanchez
  * Author URI: https://ricksanche.ir
  * License: GPLv3
@@ -18,7 +18,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Define plugin constants.
-define('VAZIRMATN_FONT_PLUGIN_VERSION', '1.0.0');
+define('VAZIRMATN_FONT_PLUGIN_VERSION', '1.0.1');
 define('VAZIRMATN_FONT_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('VAZIRMATN_FONT_PLUGIN_URL', plugin_dir_url(__FILE__));
 
@@ -30,8 +30,12 @@ add_action('plugins_loaded', 'vazirmatn_font_plugin_load_textdomain');
 
 // Enqueue styles for frontend, admin, and login pages.
 function vazirmatn_font_plugin_enqueue_styles() {
-    $css_file = is_admin() ? 'vazirmatn-font-dashboard.css' : 'vazirmatn-font.css';
-    wp_enqueue_style('vazirmatn-font-plugin-style', VAZIRMATN_FONT_PLUGIN_URL . 'assets/css/' . $css_file, array(), VAZIRMATN_FONT_PLUGIN_VERSION);
+    $options = get_option('vazirmatn_font_plugin_options', array('enabled' => 1));
+
+    if (isset($options['enabled']) && $options['enabled']) {
+        $css_file = is_admin() ? 'vazirmatn-font-dashboard.css' : 'vazirmatn-font.css';
+        wp_enqueue_style('vazirmatn-font-plugin-style', VAZIRMATN_FONT_PLUGIN_URL . 'assets/css/' . $css_file, array(), VAZIRMATN_FONT_PLUGIN_VERSION);
+    }
 }
 add_action('admin_enqueue_scripts', 'vazirmatn_font_plugin_enqueue_styles');
 add_action('wp_enqueue_scripts', 'vazirmatn_font_plugin_enqueue_styles');
@@ -51,6 +55,9 @@ add_action('admin_menu', 'vazirmatn_font_plugin_add_settings_page');
 
 // Render the settings page.
 function vazirmatn_font_plugin_render_settings_page() {
+    if (!current_user_can('manage_options')) {
+        return;
+    }
     ?>
     <div class="wrap">
         <h1><?php echo esc_html__('تنظیمات فونت Vazirmatn', 'vazirmatn-font-plugin'); ?></h1>
@@ -80,7 +87,7 @@ function vazirmatn_font_plugin_section_text() {
 
 // Input field for settings.
 function vazirmatn_font_plugin_field_input() {
-    $options = get_option('vazirmatn_font_plugin_options');
+    $options = get_option('vazirmatn_font_plugin_options', array('enabled' => 1));
     echo "<input id='vazirmatn_font_plugin_field' name='vazirmatn_font_plugin_options[enabled]' type='checkbox' value='1' " . checked(1, $options['enabled'], false) . " />";
 }
 
