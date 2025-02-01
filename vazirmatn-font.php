@@ -1,11 +1,9 @@
 <?php
 /**
  * Plugin Name: Vazirmatn Font
- * Plugin URI: https://ricksanche.ir
  * Description: افزونه فونت Vazirmatn برای وردپرس | طراحی شده توسط صابر راستی کردار
  * Version: 1.0.1
  * Author: Rick Sanchez
- * Author URI: https://ricksanche.ir/m4tinbeigi
  * License: GPLv3
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  * Text Domain: vazirmatn-font
