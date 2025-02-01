@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Vazirmatn Font
- * Description: افزونه فونت Vazirmatn برای وردپرس | طراحی شده توسط صابر راستی کردار
+ * Description: ساخته شده توسط ریک سانچز برای زنده نگهداشتن یاد صابر راستی کردار
  * Version: 1.0.1
  * Author: Rick Sanchez
  * License: GPLv3
