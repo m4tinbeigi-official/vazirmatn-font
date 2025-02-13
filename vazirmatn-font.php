@@ -1,4 +1,4 @@
-<?php
+<?PHP
 /**
  * Plugin Name: Vazirmatn Font
  * Description: ساخته شده توسط ریک سانچز برای زنده نگهداشتن یاد صابر راستی کردار
@@ -8,6 +8,7 @@
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  * Text Domain: vazirmatn-font
  * Domain Path: /languages
+ * Requires PHP: 7.0
  */
 
 // Exit if accessed directly.
@@ -22,8 +23,9 @@ define('VAZIRMATN_FONT_PLUGIN_URL', plugin_dir_url(__FILE__));
 
 // Load text domain for translations.
 function vazirmatn_font_plugin_load_textdomain() {
-    load_plugin_textdomain('vazirmatn-font-plugin', false, dirname(plugin_basename(__FILE__)) . '/languages');
+    load_plugin_textdomain('vazirmatn-font', false, dirname(plugin_basename(__FILE__)) . '/languages');
 }
+
 add_action('plugins_loaded', 'vazirmatn_font_plugin_load_textdomain');
 
 // Enqueue styles for frontend, admin, and login pages.
@@ -42,12 +44,12 @@ add_action('login_enqueue_scripts', 'vazirmatn_font_plugin_enqueue_styles');
 // Add settings page for the plugin.
 function vazirmatn_font_plugin_add_settings_page() {
     add_options_page(
-        __('تنظیمات فونت Vazirmatn', 'vazirmatn-font-plugin'),
-        __('فونت Vazirmatn', 'vazirmatn-font-plugin'),
-        'manage_options',
-        'vazirmatn-font-plugin-settings',
-        'vazirmatn_font_plugin_render_settings_page'
-    );
+    __('تنظیمات فونت Vazirmatn', 'vazirmatn-font'),
+    __('فونت Vazirmatn', 'vazirmatn-font'),
+    'manage_options',
+    'vazirmatn-font-plugin-settings',
+    'vazirmatn_font_plugin_render_settings_page'
+);
 }
 add_action('admin_menu', 'vazirmatn_font_plugin_add_settings_page');
 
